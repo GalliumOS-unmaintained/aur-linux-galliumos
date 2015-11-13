@@ -24,23 +24,29 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
 
 	# GalliumOS patches
 	'0001-block-cgroups-kconfig-build-bits-for-BFQ-v7r8-4.1.patch'
-	'0002-block-introduce-the-BFQ-v7r6-I-O-sched-for-4.1.patch'
+	'0002-block-introduce-the-BFQ-v7r8-I-O-sched-for-4.1.patch'
 	'0003-block-bfq-add-Early-Queue-Merge-EQM-to-BFQ-v7r8-for-4.1.0.patch'
-	'chromeos_laptop_elan.patch'
+	'chromos_laptop_elan.patch'
 	'hdmi_hotplug.patch'
 	'workqueue_timeout.patch'
 	'patch-4.1-ck2.lrz'
 
 	)
 
-sha256sums=('cf20e044f17588d2a42c8f2a450b0fd84dfdbd579b489d93e9ab7d0e8b45dbeb'
+sha256sums=('caf51f085aac1e1cea4d00dbbf3093ead07b551fc07b31b2a989c05f8ea72d9f'
             'SKIP'
-            'b631eb4e8b4911b31111b0838e00f7c4a1b7689abcd2233609831b638493f4fb'
+            '64e4deb16a279e233b0c91463b131bd0f3de6aabdb49efded8314bcf5dbfe070'
             'SKIP'
-            '6921399a0e304f6c64cff17226ce3f20ebe8194f14ebcd318989f2515d8248ad'
-            'c3be602e0ce609b5fe5af2e631b01c8fba376a0c434206deca3d101b62685262'
+            '93021127e545b9678c07281d576b1a0f88b8d85eab5b2195a6062a3c164659de'
             'f0d90e756f14533ee67afda280500511a62465b4f76adcc5effa95a40045179c'
-            '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99')
+            '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99'
+            'ec0ca3c8051ea6d9a27a450998af8162464c224299deefc29044172940e96975'
+            '5bd9455782f9b8fad607a890262eace863520250f22cede5055773345301c91f'
+            '4f30f76adbdf49aec8d41ac27ad212734500c272f3cba594f134a7bc263820d9'
+            'eb487756fe54bd974f9427e71e4414f56080cdd30a7f296fcd280092a6f80042'
+            'fe594a635a840dee30a7ee279f05774a98d7f53637a269f7909743898eb9ff3f'
+            'c35cada38bc8ace690eac281d49c624f63ae33fddacc37d2bbc7ddd6703c5db0'
+            '7894ec0704006c892f10051a4566a09ce153056fc7b41e536fac1965b4dc01ff')
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E' # Greg Kroah-Hartman
@@ -63,7 +69,7 @@ prepare() {
   patch -p1 -i "${srcdir}/change-default-console-loglevel.patch"
 
   if [ "${CARCH}" = "x86_64" ]; then
-    cat "${srcdir}/config.x86_64" > ./.config
+    cat "${srcdir}/config-4.1.6-galliumos" > ./.config
   else
     cat "${srcdir}/config" > ./.config
   fi
